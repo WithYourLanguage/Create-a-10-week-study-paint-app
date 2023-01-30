@@ -89,14 +89,20 @@ function onFileChange(event) {
 }
 function onDoubleClick(event) {
   const text = textInput.value;
-  if (text !== "") {
-    console.log("테스트용 console.log입니당.");
-    ctx.save();
-    ctx.lineWidth = 1;
-    ctx.font = "68px MuseoModerno";
-    ctx.fillText(text, event.offsetX, event.offsetY);
-    ctx.restore();
-  }
+  // if (text !== "") {
+  //   console.log("테스트용 console.log입니당.");
+  //   ctx.save();
+  //   ctx.lineWidth = 1;
+  //   ctx.font = "68px MuseoModerno";
+  //   ctx.fillText(text, event.offsetX, event.offsetY);
+  //   ctx.restore();
+  // }
+  console.log("테스트용 console.log입니당.");
+  ctx.save();
+  ctx.lineWidth = 1;
+  ctx.font = "68px MuseoModerno";
+  ctx.fillText(text, event.offsetX, event.offsetY);
+  ctx.restore();
 }
 function onSaveClick() {
   const url = canvas.toDataURL();
