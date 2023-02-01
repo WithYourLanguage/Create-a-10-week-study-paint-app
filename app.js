@@ -20,21 +20,38 @@ ctx.lineWidth = lineWidth.value;
 ctx.lineCap = "round";
 let isPainting = false;
 let isFilling = false;
-
+let fillSituation = false;
 function onMove(event) {
-  if (isPainting) {
+  if (isPainting && isFilling === false) {
+    fillSituation = false;
+    console.log("if진입");
     ctx.lineTo(event.offsetX, event.offsetY);
     ctx.stroke();
     return;
+  } else if (isPainting && isFilling === true) {
+    fillSituation = true;
+    console.log("else if진입");
+    ctx.lineTo(event.offsetX, event.offsetY);
+    ctx.stroke();
+    canvas.addEventListener("mouseup", fill);
+    //ctx.fill();
+    return;
   }
   ctx.moveTo(event.offsetX, event.offsetY);
+  ctx.beginPath();
+}
+function fill() {
+  if (fillSituation === true) {
+    console.log("fill 펑션 실행");
+    ctx.fill();
+  }
 }
 function startPainting() {
   isPainting = true;
 }
 function cancelPainting() {
   isPainting = false;
-  ctx.beginPath();
+  // ctx.beginPath();
 }
 function onLineWidthChange(event) {
   ctx.lineWidth = event.target.value;
@@ -55,10 +72,10 @@ function onColorClick(event) {
 function onModeClick() {
   if (isFilling) {
     isFilling = false;
-    modeBtn.innerText = "Fill";
+    modeBtn.innerText = "Fill"; // 그리기 모드
   } else {
     isFilling = true;
-    modeBtn.innerText = "Draw";
+    modeBtn.innerText = "Draw"; // 채우기 모드
   }
 }
 
@@ -116,7 +133,7 @@ canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", cancelPainting);
 canvas.addEventListener("mouseleave", cancelPainting);
-canvas.addEventListener("click", onCanvasClick);
+//canvas.addEventListener("click", onCanvasClick);
 lineWidth.addEventListener("change", onLineWidthChange);
 color.addEventListener("change", onColorChange);
 
