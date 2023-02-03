@@ -125,7 +125,7 @@ function onDoubleClick(event) {
   console.log("테스트용 console.log입니당.");
   ctx.save();
   ctx.lineWidth = 1;
-  ctx.font = "68px MuseoModerno";
+  ctx.font = `${fontSizeValue} MuseoModerno`;
   ctx.fillText(text, event.offsetX, event.offsetY);
   ctx.restore();
   textAddDrawingAfter = false;
@@ -138,9 +138,11 @@ function onSaveClick() {
   a.download = "MyDrawing.png";
   a.click();
 }
-// function onFontSizeChange(event) {
-//   fontSizeValue = event.target.value;
-// }
+function onFontSizeChange(event) {
+  fontSizeValue = `${event.target.value}px`;
+  console.log(event.target.value);
+  console.log(`${fontSizeValue}변수`);
+}
 canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -149,7 +151,7 @@ canvas.addEventListener("mouseleave", cancelPainting);
 //canvas.addEventListener("click", onCanvasClick);
 lineWidth.addEventListener("change", onLineWidthChange);
 
-//fontSize.addEventListener("change", onFontSizeChange); // 폰트 사이즈 input
+fontSize.addEventListener("change", onFontSizeChange); // 폰트 사이즈 input
 
 color.addEventListener("change", onColorChange);
 
