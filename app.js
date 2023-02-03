@@ -12,8 +12,13 @@ const lineWidth = document.getElementById("line-width");
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
+const fontSize = document.getElementById("fontSize");
+
 const CANVAS_WIDTH = 800;
 const CANVAS_HEIGHT = 800;
+
+let fontSizeValue = "30px";
+
 canvas.width = 800;
 canvas.height = 800;
 ctx.lineWidth = lineWidth.value;
@@ -128,6 +133,9 @@ function onSaveClick() {
   a.download = "MyDrawing.png";
   a.click();
 }
+// function onFontSizeChange(event) {
+//   fontSizeValue = event.target.value;
+// }
 canvas.addEventListener("dblclick", onDoubleClick);
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
@@ -135,6 +143,9 @@ canvas.addEventListener("mouseup", cancelPainting);
 canvas.addEventListener("mouseleave", cancelPainting);
 //canvas.addEventListener("click", onCanvasClick);
 lineWidth.addEventListener("change", onLineWidthChange);
+
+//fontSize.addEventListener("change", onFontSizeChange); // 폰트 사이즈 input
+
 color.addEventListener("change", onColorChange);
 
 colorOptions.forEach((color) => color.addEventListener("click", onColorClick));

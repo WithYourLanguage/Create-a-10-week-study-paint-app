@@ -70,3 +70,12 @@ input#text {
 input#file {
   display: none;
 }
+.FontSize {
+  display: block;
+}
+.fontSizeDib {
+  display: block;
+  margin-top: 80vh;
+  margin-left: -21vw;
+  padding: 20px;
+}
