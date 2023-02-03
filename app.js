@@ -21,13 +21,15 @@ ctx.lineCap = "round";
 let isPainting = false;
 let isFilling = false;
 
+let textAddDrawingAfter = true;
+
 function onMove(event) {
-  if (isPainting) {
+  if (isPainting === true && textAddDrawingAfter === true) {
     ctx.lineTo(event.offsetX, event.offsetY);
     ctx.stroke();
     return;
   }
-  ctx.moveTo(event.offsetX, event.offsetY);
+  // ctx.moveTo(event.offsetX, event.offsetY);
 }
 function startPainting() {
   isPainting = true;
@@ -65,6 +67,9 @@ function onModeClick() {
 function onCanvasClick() {
   if (isFilling) {
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  } else if (textAddDrawingAfter === false) {
+    console.log("on캔버슥클릭");
+    textAddDrawingAfter = true;
   }
 }
 function onDestroyClick() {
@@ -103,6 +108,8 @@ function onDoubleClick(event) {
   ctx.font = "68px MuseoModerno";
   ctx.fillText(text, event.offsetX, event.offsetY);
   ctx.restore();
+  textAddDrawingAfter = false;
+  // canvas.addEventListener("click", onCanvasClick);
 }
 function onSaveClick() {
   const url = canvas.toDataURL();
