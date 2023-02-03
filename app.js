@@ -87,6 +87,9 @@ function onModeClick() {
 function onCanvasClick() {
   if (isFilling) {
     ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  } else if (textAddDrawingAfter === false) {
+    console.log("on캔버슥클릭");
+    textAddDrawingAfter = true;
   }
 }
 function onDestroyClick() {
@@ -125,6 +128,8 @@ function onDoubleClick(event) {
   ctx.font = "68px MuseoModerno";
   ctx.fillText(text, event.offsetX, event.offsetY);
   ctx.restore();
+  textAddDrawingAfter = false;
+  // canvas.addEventListener("click", onCanvasClick);
 }
 function onSaveClick() {
   const url = canvas.toDataURL();
